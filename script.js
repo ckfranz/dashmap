@@ -80,10 +80,10 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 class App {
   // '#' private class fields
-  #map;
-  #mapZoomLevel = 13;
-  #mapEvent;
-  #workouts = [];
+  _map;
+  _mapZoomLevel = 13;
+  _mapEvent;
+  _workouts = [];
 
   constructor() {
     // note: 'this' keyword of event handler function will be element to which it is attached (ie. 'form')
@@ -115,33 +115,36 @@ class App {
 
     const coords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+    this._map = L.map('map').setView(coords, this._mapZoomLevel);
     // console.log(map); // view internals of leaflet library
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(this.#map);
+    }).addTo(this._map);
 
     // Handling clicks on map
     // note: map objet is generated from leaflet
-    this.#map.on('click', this._showForm.bind(this));
+    this._map.on('click', this._showForm.bind(this));
 
-    this.#workouts.forEach(work => {
+    this._workouts.forEach(work => {
       this._renderWorkoutMarker(work);
     });
   }
 
   _showForm(mapE) {
-    this.#mapEvent = mapE;
+    this._mapEvent = mapE;
     form.classList.remove('hidden');
     inputDistance.focus();
   }
 
   _hideForm() {
     // Empty inputs
-    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value =
-      '';
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        '';
 
     form.style.display = 'none';
     form.classList.add('hidden');
@@ -166,7 +169,7 @@ class App {
     const type = inputType.value;
     const distance = +inputDistance.value; // Use '+' to convert string to number
     const duration = +inputDuration.value;
-    const { lat, lng } = this.#mapEvent.latlng;
+    const { lat, lng } = this._mapEvent.latlng;
     let workout;
     // Check if data is valid
 
@@ -202,7 +205,7 @@ class App {
 
     // Functionality Delegation:
     // Add new object to workout array
-    this.#workouts.push(workout);
+    this._workouts.push(workout);
 
     // Render workout on map as marker
     this._renderWorkoutMarker(workout);
@@ -219,7 +222,7 @@ class App {
 
   _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
-      .addTo(this.#map) // no need to use bind, because calling this mehod ourselves
+      .addTo(this._map) // no need to use bind, because calling this mehod ourselves
       .bindPopup(
         L.popup({
           maxWidth: 250,
@@ -292,11 +295,11 @@ class App {
 
     if (!workoutEl) return;
 
-    const workout = this.#workouts.find(
+    const workout = this._workouts.find(
       work => work.id === workoutEl.dataset.id
     );
 
-    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+    this._map.setView(workout.coords, this._mapZoomLevel, {
       animate: true,
       pan: {
         duration: 1,
@@ -308,7 +311,7 @@ class App {
   }
 
   _setLocalStorage() {
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts)); // Key value store arguments; name, string
+    localStorage.setItem('workouts', JSON.stringify(this._workouts)); // Key value store arguments; name, string
   }
 
   _getLocalStorage() {
@@ -316,9 +319,9 @@ class App {
 
     if (!data) return;
 
-    this.#workouts = data;
+    this._workouts = data;
 
-    this.#workouts.forEach(work => {
+    this._workouts.forEach(work => {
       this._renderWorkout(work);
     });
   }
