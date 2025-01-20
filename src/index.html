@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="./assets/icon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+
+    <!-- <script defer src="other.js"></script> -->
+    <script defer src="script.js"></script>
+    <title>DaskMap // Map your workouts</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <img src="assets/DashMap.png" alt="Logo" class="logo" />
+      <ul class="workouts">
+        <button class="form__btn form__btn--auth" type="button">
+          Connect with
+          <img
+            src="assets/strava_white.svg"
+            alt="Strava-Logo"
+            class="strava-logo"
+          />
+        </button>
+        <form class="form">
+          <div class="form__row">
+            <label class="form__label" for="start">Start</label>
+            <input
+              id="start"
+              type="date"
+              class="form__input form__input--start-date"
+              placeholder="Select a date"
+              value="2024-05-25"
+            />
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="end">End</label>
+            <input
+              id="end"
+              type="date"
+              class="form__input form__input--end-date"
+              placeholder="Select a date"
+              value="2024-05-30"
+            />
+          </div>
+          <div>
+            <span class="text">Maximim of 50 activities</span>
+          </div>
+          <button class="form__btn" type="submit">Create Heatmap!</button>
+        </form>
+      </ul>
+      <p class="copyright">
+        &copy 2025
+        <a
+          class="profile-link"
+          target="_blank"
+          href="https://github.com/ckfranz"
+          >Curtis Franz</a
+        >
+      </p>
+    </div>
+
+    <div id="map"></div>
+  </body>
+</html>
