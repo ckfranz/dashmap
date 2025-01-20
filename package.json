@@ -14,6 +14,7 @@
     "@parcel/resolver-glob": "^2.13.3",
     "parcel": "^2.13.3",
     "parcel-plugin-static-files-copy": "^2.6.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
     "svgo": "^3.3.2"
   },
   "staticFiles": {
