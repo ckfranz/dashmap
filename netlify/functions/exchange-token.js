@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
 export async function handler(event, context) {
   const clientId = process.env.STRAVA_CLIENT_ID;
