@@ -19,5 +19,8 @@
   },
   "staticFiles": {
     "staticPath": "static"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }
