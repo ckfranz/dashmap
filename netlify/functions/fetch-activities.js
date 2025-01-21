@@ -19,7 +19,7 @@ export async function handler(event) {
 
     // Fetch activities from the Strava API
     const response = await fetch(
-      `${stravaApiUrl}/athlete/activities?after=${after}&before=${before}&page=1&per_page=5`,
+      `${stravaApiUrl}/athlete/activities?after=${after}&before=${before}&page=1&per_page=50`,
       {
         method: 'GET',
         headers: {
