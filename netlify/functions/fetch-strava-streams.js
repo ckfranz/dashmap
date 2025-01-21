@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 export async function handler(event) {
   const { activityId, accessToken } = JSON.parse(event.body);
 
