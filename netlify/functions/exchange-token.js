@@ -1,9 +1,9 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 exports.handler = async function (event, context) {
   const clientId = process.env.STRAVA_CLIENT_ID;
   const clientSecret = process.env.STRAVA_CLIENT_SECRET;
-  const redirectUri = process.env.STRAVA_REDIRECT_URI;
+  const redirectUri = process.env.STRAVA_REDIRECT_URI; // This needs to match the one in your OAuth request
   const accessToken = event.queryStringParameters.accessToken;
 
   if (!accessToken) {
