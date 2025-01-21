@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
 
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
   const clientId = process.env.STRAVA_CLIENT_ID;
   const clientSecret = process.env.STRAVA_CLIENT_SECRET;
   const redirectUri = process.env.STRAVA_REDIRECT_URI; // This needs to match the one in your OAuth request
-  const accessToken = event.queryStringParameters.accessToken;
+  const code = event.queryStringParameters.code;
 
-  if (!accessToken) {
+  if (!code) {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'No code provided' }),
@@ -20,7 +20,7 @@ exports.handler = async function (event, context) {
     body: new URLSearchParams({
       client_id: clientId,
       client_secret: clientSecret,
-      code: accessToken,
+      code: code,
       grant_type: 'authorization_code',
       redirect_uri: redirectUri, // The same redirect URI used in the original OAuth request
     }),
@@ -40,4 +40,4 @@ exports.handler = async function (event, context) {
     statusCode: 200,
     body: JSON.stringify(data),
   };
-};
+}

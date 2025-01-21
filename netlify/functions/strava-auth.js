@@ -1,4 +1,4 @@
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
   const clientId = process.env.STRAVA_CLIENT_ID;
   const redirectUri = process.env.STRAVA_REDIRECT_URI; // Your local callback URL
   const scope = 'activity:read_all'; // Permissions needed
@@ -11,4 +11,4 @@ exports.handler = async function (event, context) {
       Location: stravaAuthUrl, // Redirect to Strava's OAuth URL
     },
   };
-};
+}

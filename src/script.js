@@ -215,7 +215,7 @@ class App {
         try {
           // Fetch the access token from the Netlify function
           const response = await fetch(
-            `/.netlify/functions/exchange-token?accessToken=${code}`
+            `/.netlify/functions/exchange-token?code=${code}`
           );
           const data = await response.json();
 

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-exports.handler = async function (event) {
+export async function handler(event) {
   const { afterDate, beforeDate, accessToken } = JSON.parse(event.body);
 
   if (!afterDate || !beforeDate || !accessToken) {
@@ -49,4 +49,4 @@ exports.handler = async function (event) {
       body: JSON.stringify({ error: 'Internal Server Error' }),
     };
   }
-};
+}

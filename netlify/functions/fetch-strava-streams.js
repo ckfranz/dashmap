@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-exports.handler = async function (event) {
+export async function handler(event) {
   const { activityId, accessToken } = JSON.parse(event.body);
 
   if (!activityId || !accessToken) {
@@ -42,4 +42,4 @@ exports.handler = async function (event) {
       body: JSON.stringify({ error: 'Internal Server Error' }),
     };
   }
-};
+}
